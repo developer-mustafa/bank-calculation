@@ -38,7 +38,10 @@ document.getElementById('btn-withdraw').addEventListener('click',function () {
    const withdrawTotalElement=document.getElementById('withdraw-total');
    const previousWithdrawTotalString =withdrawTotalElement.innerText;
    const previousWithdrawTotal = parseFloat(previousWithdrawTotalString);
-   
+   const currentWithdrawTotal = previousWithdrawTotal+newWithdrawAmount;
+   withdrawTotalElement.innerText = currentWithdrawTotal;
+
+   withdrawField.value = '';
 
 
   })
