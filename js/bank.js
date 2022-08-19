@@ -1,52 +1,82 @@
-
+/* -------------------------------------------------------------------------- */
+/*                               deposit amount                               */
+/* -------------------------------------------------------------------------- */
 //deposit amount input field connect to get value by clicking button
-document.getElementById('btn-deposit').addEventListener('click',function () {
-    const depositField = document.getElementById('deposit-field');
-    //get the new deposit total
-    const newDepositAmountString = depositField.value;
-    const newDepositAmount=parseFloat(newDepositAmountString);
-    const depositTotalElement =document.getElementById('deposit-total');
-    //get the previous deposit total
-    const previousDepositTotalString = depositTotalElement.innerText;
-    const previousDepositTotal= parseFloat(previousDepositTotalString);
-    // //calculate deposit total balance
-    const currentDepositTotal = newDepositAmount+previousDepositTotal;
-    depositTotalElement.innerText=currentDepositTotal;
+document.getElementById("btn-deposit").addEventListener("click", function () {
+  const depositField = document.getElementById("deposit-field");
+  //get the new deposit total
+  const newDepositAmountString = depositField.value;
+  const newDepositAmount = parseFloat(newDepositAmountString);
+    // is not a number problem solved
+   //last step clear the deposit field
+   depositField.value = "";
+    if(isNaN(newDepositAmount)){
+    alert('please provide valid number');
+    return;
+  }
 
-    //last step clear the deposit field
-    depositField.value = '';
-
-    //get balance current total 
-    const balanceTotalElement = document.getElementById('balance-total');
-    const previousBalanceTotalString =balanceTotalElement.innerText;
-    const previousBalanceTotal =parseFloat(previousBalanceTotalString);
-    //calculate current total balance
-    const currentBalanceTotal = previousBalanceTotal+newDepositAmount;
-    balanceTotalElement.innerText =currentBalanceTotal;
+  const depositTotalElement = document.getElementById("deposit-total");
+  //get the previous deposit total
+  const previousDepositTotalString = depositTotalElement.innerText;
+  const previousDepositTotal = parseFloat(previousDepositTotalString);
+  // //calculate deposit total balance
+  const currentDepositTotal = newDepositAmount + previousDepositTotal;
+  depositTotalElement.innerText = currentDepositTotal;
 
 
-  })
+  //get balance current total
+  const balanceTotalElement = document.getElementById("balance-total");
+  const previousBalanceTotalString = balanceTotalElement.innerText;
+  const previousBalanceTotal = parseFloat(previousBalanceTotalString);
+ 
+  //calculate current total balance
+  const currentBalanceTotal = previousBalanceTotal + newDepositAmount;
+  balanceTotalElement.innerText = currentBalanceTotal;
+  
+});
 
+/* -------------------------------------------------------------------------- */
+/*                               withdraw amount                              */
+/* -------------------------------------------------------------------------- */
 
 //withdraw amount input field connect to get value by clicking button
-document.getElementById('btn-withdraw').addEventListener('click',function () {
-    const withdrawField = document.getElementById('withdraw-field');
-    const newWithdrawAmountString = withdrawField.value;
-    const newWithdrawAmount= parseFloat(newWithdrawAmountString);
+document.getElementById("btn-withdraw").addEventListener("click", function () {
+  const withdrawField = document.getElementById("withdraw-field");
+  const newWithdrawAmountString = withdrawField.value;
+  const newWithdrawAmount = parseFloat(newWithdrawAmountString);
+  //last step clear the withdraw field
+    withdrawField.value = "";
 
-   //get the previous with total
-   const withdrawTotalElement=document.getElementById('withdraw-total');
-   const previousWithdrawTotalString =withdrawTotalElement.innerText;
-   const previousWithdrawTotal = parseFloat(previousWithdrawTotalString);
-   const currentWithdrawTotal = previousWithdrawTotal+newWithdrawAmount;
-   withdrawTotalElement.innerText = currentWithdrawTotal;
-    // step-5
-    const balanceTotalElement=document.getElementById('balance-total');
-    const previousBalanceTotalString=balanceTotalElement.innerText;
-    const previousBalanceTotal=parseFloat(previousBalanceTotalString);
-    // step-6
-    const newBalanceTotal = previousBalanceTotal - newWithdrawAmount;
-    balanceTotalElement.innerText = newBalanceTotal;
+  // is not a number problem solved
+  if(isNaN(newWithdrawAmount)){
+    alert('please provide valid number');
+    return;
+  }
+
+  //get the previous with total
+  const withdrawTotalElement = document.getElementById("withdraw-total");
+  const previousWithdrawTotalString = withdrawTotalElement.innerText;
+  const previousWithdrawTotal = parseFloat(previousWithdrawTotalString);
+    /* -------------------------------------------------------------------------- */
+  /*                                balance-total                               */
+  /* -------------------------------------------------------------------------- */
+  // step-5
+  const balanceTotalElement = document.getElementById("balance-total");
+  const previousBalanceTotalString = balanceTotalElement.innerText;
+  const previousBalanceTotal = parseFloat(previousBalanceTotalString);
   
-   withdrawField.value = '';
-  })
+
+  if(newWithdrawAmount > previousBalanceTotal){
+    alert('বাপের ব্যাংকে এতো টাক নেই')
+    return;
+  }
+//   withdraw total again added here
+  const currentWithdrawTotal = previousWithdrawTotal + newWithdrawAmount;
+  withdrawTotalElement.innerText = currentWithdrawTotal;
+
+  // step-6
+  const newBalanceTotal = previousBalanceTotal - newWithdrawAmount;
+  balanceTotalElement.innerText = newBalanceTotal;
+
+ 
+});

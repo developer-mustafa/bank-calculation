@@ -12,8 +12,9 @@ const password =inputPasswordField.value;
 //step-4: verify user password and email
 if (email ==='mustafarahman792@gmail.com' && password==='hacker') {
     window.location.href = 'bank.html'
+    
 } else {
-    alert('invalid user and login information not matched')
+    alert('আপনার দেওয়া ইনফরমেশন ম্যাচ করেনি');
 }
 
 })
