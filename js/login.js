@@ -11,7 +11,7 @@ const password =inputPasswordField.value;
 //Danger do not verify email or password on the client side or front-end side we should be use back-end side it.
 //step-4: verify user password and email
 if (email ==='mustafarahman792@gmail.com' && password==='hacker') {
-    window.location.href = 'bank.html'
+    window.location.href = 'https://developer-mustafa.github.io/bank-calculation/bank.html'
     
 } else {
     alert('আপনার দেওয়া ইনফরমেশন ম্যাচ করেনি');
